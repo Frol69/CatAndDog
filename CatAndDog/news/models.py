@@ -41,3 +41,4 @@ class Pets(models.Model):
     age = models.DateTimeField()
     text = models.TextField()
     photo = RichTextUploadingField()
+
