@@ -37,7 +37,7 @@ class Comment(models.Model):
 
 
 class Pets(models.Model):
-    name = models.TextField()
-    date = models.TextField()
+    name = models.CharField()
+    age = models.DateTimeField()
     text = models.TextField()
     photo = RichTextUploadingField()
