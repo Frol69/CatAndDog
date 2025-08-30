@@ -1,6 +1,7 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Users(models.Model):
@@ -22,6 +23,9 @@ class Post(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     category = models.ManyToManyField(Category, through='PostCategory')
     text = RichTextUploadingField(blank=True)
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
 
 
 class PostCategory(models.Model):
