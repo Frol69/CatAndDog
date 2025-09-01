@@ -13,24 +13,24 @@ class PostsList(ListView):
 
 class PostDetail(DetailView):
     model = Post
-    template_name = 'flatpages/post.html'
+    template_name = 'news/post.html'
     context_object_name = 'post'
 
 
 class PostCreate(CreateView):
     form_class = PostForm
     model = Post
-    template_name = 'flatpages/post_create.html'
+    template_name = 'news/post_create.html'
 
 
 class PostUpdate(UpdateView):
     form_class = PostForm
     model = Post
-    template_name = 'flatpages/post_update.html'
+    template_name = 'news/post_update.html'
 
 
 class PostDelete(DeleteView):
     model = Post
-    template_name = 'flatpages/post_delete.html'
+    template_name = 'news/post_delete.html'
     success_url = reverse_lazy('post_list')
 
