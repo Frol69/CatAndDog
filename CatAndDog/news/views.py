@@ -8,6 +8,7 @@ class PostsList(ListView):
     model = Post
     ordering = '-time'
     context_object_name = 'posts'
+    template_name = 'news/post_list.html'
     # paginate_by = 10
 
 
