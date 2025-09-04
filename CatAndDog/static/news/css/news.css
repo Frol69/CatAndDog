@@ -35,12 +35,23 @@ aside ul li {
     color: #fff; /* цвет шрифта */
     display: block; /* блочный элемент */
     margin-top: 20px; /* отступ сверху */
-    transition: all .6s ease
+    transition: transform .6s ease /* плавность для transform */
 }
 
 aside ul li:hover, aside ul a:hover {
     color: eb5959; /* цвет при наведении */
     text-decoration: none; /* убрана полоса при наведении */
-    transform: scale(1.10); /* увелечение при наведение */
+    transform: scale(1.05); /* увелечение при наведение */
 
 }
+
+main .features {
+    float: left; /* позиция */
+    color: #fff; /* цвет */
+    margin-top: 100px; /* отступ сверху */
+    text-align: center; /* расположение по центру */
+    width: 75%; /* ширина */
+}
+
+main .features h1 {font-size: 50px;} /* размер шрифта */
+main .features p {max-width: 400px; margin: 20px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
