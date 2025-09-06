@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import *
 from .forms import PostForm
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 
 class PostsList(ListView):
@@ -34,3 +35,6 @@ class PostDelete(DeleteView):
     model = Post
     template_name = 'news/post_delete.html'
 
+
+def contacts(request):
+    return render(request, 'news/contacts.html')
