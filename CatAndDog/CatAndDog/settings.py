@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.yandex',
     'news',
+    'sign',
     'django_ckeditor_5',
 
 ]
@@ -164,7 +165,7 @@ ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_LOGIN_METHODS = {'username', 'email'}
-
+ACCOUNT_SESSION_REMEMBER = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -182,3 +183,6 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+
+ACCOUNT_FORMS = {'signup': 'sign.forms.MyCustomSignupForm'}
