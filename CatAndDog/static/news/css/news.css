@@ -57,3 +57,24 @@ main .features h1 {font-size: 50px;} /* размер шрифта */
 main .features p {max-width: 400px; margin: 20px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
 
 a { text-decoration: none; }
+
+ /* тест настройка */
+main .features a {
+    padding: 20; /* отступы */
+    color: #48280f; /* цвет шрифта */
+    display: block /* блочные елементы */
+}
+
+main .btn-primary {
+    background-color: #eca646; /* цвет кнопки */
+}
+
+ul { list-style-type: none; }  /* убрал точки из контента */
+
+.alert-warning {
+    float: left;
+    clear: both;
+    width: 700px;
+    margin: 20px 34%;
+    text-align: left;
+}
