@@ -1,0 +1,82 @@
+body {
+    background: #a18163; /* цвет контента */
+}
+
+aside {
+    float: left; /* расположение */
+    background: #fbfbf1; /*цвет панели слева */
+    width: 20%; /* ширина блока */
+    padding: 2.5; /* отступы */
+    height: 100vh; /* высота блока */
+    color: #48280f; /* цвет текста */
+    border-right: 5px solid #4d4d4d;
+}
+
+aside img {
+    width: 80px; /* ширина картинки */
+    float: left; /* расположение */
+}
+
+aside .logo {
+    font-size: 40px; /* размер шрифта */
+    margin-left 10px; /* отступ слевой стороны */
+    font-weight: bold; /* жирный шрифт */
+    position: relative; /*  */
+    top: 7px;
+}
+
+aside h3 {
+    margin-top: 50px; /* отступ сверху */
+    font-size: 28px; /* размер шрифта */
+}
+
+aside ul {list-style: none}
+aside ul li {
+    color: #eca646; /* цвет шрифта */
+    display: block; /* блочный элемент */
+    margin-top: 20px; /* отступ сверху */
+    transition: transform .6s ease /* плавность для transform */
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: #48280f; /* цвет при наведении */
+    text-decoration: none; /* убрана полоса при наведении */
+    transform: scale(1.05); /* увелечение при наведение */
+
+}
+
+main .features {
+    float: left; /* позиция */
+    color: #fff; /* цвет */
+    margin-top: 100px; /* отступ сверху */
+    text-align: center; /* расположение по центру */
+    width: 75%; /* ширина */
+}
+
+main .features h1 {font-size: 50px;} /* размер шрифта */
+main .features p {max-width: 400px; margin: 20px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
+
+a { text-decoration: none; }
+
+ /* тест настройка */
+main .features a {
+    padding: 20; /* отступы */
+    color: #48280f; /* цвет шрифта */
+    display: block /* блочные елементы */
+}
+
+main .btn-primary {
+    background-color: #eca646; /* цвет кнопки */
+}
+
+ul { list-style-type: none; }  /* убрал точки из контента */
+
+.alert-warning {
+    float: left;
+    clear: both;
+    width: 700px;
+    margin: 20px 34%;
+    text-align: left;
+}
+
+conteiner
