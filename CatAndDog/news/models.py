@@ -12,25 +12,29 @@ class Users(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField('Имя категории', max_length=30, unique=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 
 class Post(models.Model):
     author = models.ForeignKey(Users, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
-    category = models.ManyToManyField(Category, through='PostCategory')
-    text = CKEditor5Field()
+    title = models.CharField(max_length=50)
+    category = models.ForeignKey(Category, verbose_name='Текст', on_delete=models.CASCADE)
+    text = CKEditor5Field(verbose_name='Текст')
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
-
-class PostCategory(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
 
 
 class Comment(models.Model):
@@ -45,4 +49,8 @@ class Pets(models.Model):
     age = models.DateTimeField()
     text = models.TextField()
     photo = CKEditor5Field()
+
+    class Meta:
+        verbose_name = 'Питомец'
+        verbose_name_plural = 'Питомцы'
 
