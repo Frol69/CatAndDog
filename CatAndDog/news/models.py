@@ -23,7 +23,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(Users, on_delete=models.CASCADE)
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=50)
     category = models.ForeignKey(Category, verbose_name='Текст', on_delete=models.CASCADE)
