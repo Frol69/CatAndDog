@@ -85,3 +85,23 @@ ul { list-style-type: none; }  /* убрал точки из контента */
     text-align: left;
 }
 
+main .account {
+    float: left; /* позиция */
+    color: #fff; /* цвет */
+    margin-top: 150px; /* отступ сверху */
+    text-align: center; /* расположение по центру */
+    width: 100%; /* ширина */
+}
+main .account h1 {font-size: 50px;} /* размер шрифта */
+main .account p {max-width: 400px; margin: 20px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
+
+main .account a {
+    padding: 20; /* отступы */
+    color: #48280f; /* цвет шрифта */
+    display: block /* блочные елементы */
+}
+
+main .account button {
+    color: #48280f;
+}
+
