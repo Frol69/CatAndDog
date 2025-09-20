@@ -1,4 +1,5 @@
 {% extends 'flatpages/default.html' %}
+{% load static %}
 
 {% block title %}Новостная лента{% endblock %}
 {% block content %}
@@ -6,21 +7,12 @@
     <h1> Количество публикаций: {{ posts|length }} </h1>
     <h1> Список новостей </h1>
         {% if posts %}
-        <table>
-            <tr>
-                <td>'Автор'</td>
-                <td>'Дата'</td>
-                <td>'Текст'</td>
-            </tr>
-
             {% for post in posts %}
-            <tr>
-                <td>{{ post.author }}</td>
-                <td>{{ post.time|date:'d M Y' }}</td>
-                <td>{{ post.text }}</td>
-            </tr>
+                <p>{{ post.author }} {{ post.time|date:'d M Y' }}</p>
+                <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></p>
+                <p>{{ post.text|truncatechars:30 }}</p>
+                <img src="{% static 'news/img/hr_dog.svg' %}" alt="hr_line">
             {% endfor %}
-        </table>
         {% else %}
         <h2> Новостей нет! =( </h2>
         {% endif %}
