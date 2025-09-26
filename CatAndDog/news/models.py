@@ -47,10 +47,10 @@ class Comment(models.Model):
 
 
 class Pets(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    age = models.DateTimeField()
-    text = models.TextField()
-    photo = CKEditor5Field()
+    name = models.CharField('Кличка', max_length=30, unique=True)
+    age = models.IntegerField('Возраст')
+    text = models.TextField('О питомце')
+    photo = models.FileField('Фото')
 
     class Meta:
         verbose_name = 'Питомец'
