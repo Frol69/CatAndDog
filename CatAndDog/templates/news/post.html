@@ -2,8 +2,10 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
-    <h1>{{ post.title }}</h1>
     <div class="features">
-        <h1> что то там </h1>
+        <h1>{{ post.title }}</h1>
+        <p>Категория:{{ post.category }} Пользователь:{{ post.author }} Время:{{ post.time|date:'d M Y' }}</p>
+        <p>{{ post.file.url }}</p>
+        <p>{{ post.text }}</p>
     </div>
 {% endblock content %}
