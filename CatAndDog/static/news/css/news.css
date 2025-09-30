@@ -1,0 +1,103 @@
+body {
+    background: #a18163; /* цвет контента */
+}
+
+nav {
+    position: fixed; /* прикрепление панели */
+    background: #fbfbf1; /*цвет панели сверху */
+    padding: 2.5; /* отступы */
+    height: 90px; /* высота блока */
+    width: 100%; /* ширина блока */
+    min-width: 1650px;
+    color: #48280f; /* цвет текста */
+    border-bottom: 5px solid #48280f;
+}
+
+nav img {
+    width: 80px; /* ширина картинки */
+    float: left; /* расположение */
+}
+
+nav .logo {
+    font-size: 40px; /* размер шрифта */
+    font-weight: bold; /* жирный шрифт */
+    position: fixed; /* прикрепление */
+    top: 9px;
+}
+
+nav ul {
+    list-style: none;
+    float: right;
+    font-size: 24px;
+}
+
+nav ul li {
+    color: #eca646; /* цвет шрифта */
+    display: inline-block; /* блочный элемент */
+    margin-top: 23px; /* отступ сверху */
+    margin-right: 50px; /* отступ справа */
+    transition: transform .6s ease /* плавность для transform */
+}
+
+nav ul li:hover, aside ul a:hover {
+    color: #48280f; /* цвет при наведении */
+    text-decoration: none; /* убрана полоса при наведении */
+    transform: scale(1.05); /* увелечение при наведение */
+
+}
+
+main .features {
+    float: left; /* позиция */
+    color: #fbfbf1; /* цвет */
+    margin-top: 100px; /* отступ сверху */
+    text-align: center; /* расположение по центру */
+    width: 100%; /* ширина */
+}
+
+main .features h1 {font-size: 50px;} /* размер шрифта */
+main .features p {max-width: 400px; margin: 20px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
+
+a { text-decoration: none; }
+
+ /* тест настройка */
+main .features a {
+    padding: 20; /* отступы */
+    color: #48280f; /* цвет шрифта */
+    display: block /* блочные елементы */
+}
+
+main .btn-primary {
+    background-color: #eca646; /* цвет кнопки */
+    width: 200px;
+}
+
+ul { list-style-type: none; }  /* убрал точки из контента */
+
+.alert-warning {
+    float: left;
+    clear: both;
+    width: 700px;
+    margin: 20px 34%;
+    text-align: left;
+}
+
+main .account {
+    float: left; /* позиция */
+    color: #fff; /* цвет */
+    margin-top: 150px; /* отступ сверху */
+    text-align: center; /* расположение по центру */
+    width: 100%; /* ширина */
+}
+main .account h1 {font-size: 50px;} /* размер шрифта */
+main .account p {max-width: 400px; margin: 20px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
+
+main .account a {
+    padding: 20; /* отступы */
+    color: #48280f; /* цвет шрифта */
+    display: block /* блочные елементы */
+}
+
+main .account button {
+    color: #48280f;
+}
+
