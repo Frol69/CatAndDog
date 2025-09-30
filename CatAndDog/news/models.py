@@ -1,4 +1,3 @@
-from django_ckeditor_5.fields import CKEditor5Field
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -25,9 +24,11 @@ class Category(models.Model):
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=50)
-    category = models.ForeignKey(Category, verbose_name='Текст', on_delete=models.CASCADE)
-    text = CKEditor5Field(verbose_name='Текст')
+    title = models.CharField(verbose_name='Заголовок', max_length=50)
+    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
+    text = models.TextField(verbose_name='Текст')
+    photo = models.FileField(upload_to='photos/%Y/%m/%d/', default=None, blank=True, null=True, verbose_name='Фото')
+    video = models.FileField(upload_to='video/%Y/%m/%d/', default=None, blank=True, null=True, verbose_name='Видео')
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
@@ -45,10 +46,10 @@ class Comment(models.Model):
 
 
 class Pets(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    age = models.DateTimeField()
-    text = models.TextField()
-    photo = CKEditor5Field()
+    name = models.CharField('Кличка', max_length=30, unique=True)
+    age = models.IntegerField('Возраст')
+    text = models.TextField('О питомце')
+    photo = models.FileField('Фото')
 
     class Meta:
         verbose_name = 'Питомец'

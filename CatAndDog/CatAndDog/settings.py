@@ -138,7 +138,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
@@ -168,17 +168,10 @@ ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 ACCOUNT_SESSION_REMEMBER = True
 
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '123',
-            'secret': '456',
-            'key': ''
-        }
-    },
     'yandex': {
         'APP': {
-            'client_id': '123',
-            'secret': '456',
+            'client_id': os.getenv('YANDEX_CLIENT_ID'),
+            'secret': os.getenv('YANDEX_SECRET'),
             'key': ''
         }
     }
@@ -186,5 +179,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 ACCOUNT_FORMS = {'signup': 'sign.forms.MyCustomSignupForm'}
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'account_login'
+LOGIN_REDIRECT_URL = 'profile'
+LOGOUT_REDIRECT_URL = '/'
+
