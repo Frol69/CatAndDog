@@ -1,4 +1,3 @@
-from django_ckeditor_5.fields import CKEditor5Field
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -12,25 +11,31 @@ class Users(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField('Имя категории', max_length=30, unique=True)
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
 
 class Post(models.Model):
-    author = models.ForeignKey(Users, on_delete=models.CASCADE)
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
-    category = models.ManyToManyField(Category, through='PostCategory')
-    text = CKEditor5Field()
+    title = models.CharField(verbose_name='Заголовок', max_length=50)
+    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
+    text = models.TextField(verbose_name='Текст')
+    photo = models.FileField(upload_to='photos/%Y/%m/%d/', default=None, blank=True, null=True, verbose_name='Фото')
+    video = models.FileField(upload_to='video/%Y/%m/%d/', default=None, blank=True, null=True, verbose_name='Видео')
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
-
-class PostCategory(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
 
 
 class Comment(models.Model):
@@ -41,8 +46,12 @@ class Comment(models.Model):
 
 
 class Pets(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    age = models.DateTimeField()
-    text = models.TextField()
-    photo = CKEditor5Field()
+    name = models.CharField('Кличка', max_length=30, unique=True)
+    age = models.IntegerField('Возраст')
+    text = models.TextField('О питомце')
+    photo = models.FileField('Фото')
+
+    class Meta:
+        verbose_name = 'Питомец'
+        verbose_name_plural = 'Питомцы'
 

@@ -1,0 +1,9 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}Профиль пользователя{% endblock %}
+{% block content %}
+    <div class="account">
+    <h1> Профиль {{request.user.username}}</h1>
+    <div> Здесь может содержаться персональная информация для каждого пользователя </div>
+    </div>
+{% endblock content %}

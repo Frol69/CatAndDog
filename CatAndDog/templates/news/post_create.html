@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}Создание новости{% endblock %}
+{% block content %}
+<div class="features">
+    <h1>Создание новости</h1>
+    <hr>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <input type="submit" value="Save" />
+    </form>
+</div>
+{% endblock content %}
