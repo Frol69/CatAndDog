@@ -112,3 +112,11 @@ footer {
     min-width: 1650px;
     border-top: 5px solid #48280f;
 }
+
+footer ul a {
+    display: inline-block;
+    color: 000000;
+    font-size: 24px;
+    margin-top: 25px;
+    margin-left: 100px;
+}
