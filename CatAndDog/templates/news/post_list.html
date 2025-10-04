@@ -8,8 +8,14 @@
     <h1> Список новостей </h1>
         {% if posts %}
             {% for post in posts %}
-                <p>Категория: {{ post.category }}<br>Пользователь: {{ post.author }} Дата: {{ post.time }}</p>
+<!--                <p>Категория: {{ post.category }}<br>Пользователь: {{ post.author }} Дата: {{ post.time }}</p>-->
                 <p><h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3></p>
+                {% if post.photo %}
+                    <img class="img-article-left" width="500px" src="{{ post.photo.url }}">
+                {% endif %}
+                {% if post.video %}
+                    <video class="video" controls width="500px" src="{{ post.video.url }}"></video>
+                {% endif %}
                 <p>{{ post.text|truncatechars:30 }}</p>
                 <img src="{% static 'news/img/hr_dog.svg' %}" alt="hr_line">
             {% endfor %}
