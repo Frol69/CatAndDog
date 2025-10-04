@@ -120,3 +120,30 @@ footer ul a {
     margin-top: 25px;
     margin-left: 100px;
 }
+
+main .postdeteil {
+    float: left; /* позиция */
+    color: #fbfbf1; /* цвет */
+    margin-top: 100px; /* отступ сверху */
+    text-align: center; /* расположение по центру */
+    width: 100%; /* ширина */
+    min-width: 1650px;
+}
+
+main .postdeteil h1 {font-size: 50px;} /* размер шрифта */
+main .postdeteil p {max-width: 600px; margin: 20px auto;} /* ширина 600; отступ сверху и снизу 20 по бокам авто*/
+main .postdeteil h5 {max-width: 1000px; margin: 20px auto;}
+
+main .postdeteil img {
+    float: left;
+    margin-left: 500px; /* отступ слева */
+    width: 400px;
+    height: 500px;
+
+}
+
+main .postdeteil video {
+    float: left;
+    margin-left: 500px; /* отступ слева */
+    width: 400px;
+}
