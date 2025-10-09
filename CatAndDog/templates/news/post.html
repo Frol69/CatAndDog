@@ -2,13 +2,15 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
-    <div class="features">
+    <div class="postdeteil">
         <h1>{{ post.title }}</h1>
-        <p>Категория:{{ post.category }} Пользователь:{{ post.author }} Время:{{ post.time|date:'d M Y' }}</p>
-        {% if post.file %}
-            <p><img class="img-article-left" width="300px" src="{{ post.file.url }}"></p>
-            <p><video class="video" controls width="700px" src="{{ post.file.url }}"></video></p>
+        <p>Категория: {{ post.category }} Пользователь: {{ post.author }}<br> Дата: {{ post.time }}</p>
+        {% if post.photo %}
+            <img class="img-article-left" src="{{ post.photo.url }}">
         {% endif %}
-        <p>{{ post.text }}</p>
+        {% if post.video %}
+            <video class="video" controls src="{{ post.video.url }}"></video>
+        {% endif %}
+        <h5>{{ post.text }}</h5>
     </div>
 {% endblock content %}
