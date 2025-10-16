@@ -5,6 +5,11 @@
 {% block title %}Новостная лента{% endblock %}
 {% block content %}
 <div class="features">
+    <h1>Поиск публикаций</h1>
+    <form action="" method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" value="Применить">
+    </form>
     <h1> Список новостей </h1>
         {% if posts %}
             {% for post in posts %}
