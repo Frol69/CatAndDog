@@ -1,5 +1,6 @@
 {% extends 'flatpages/default.html' %}
 {% load static %}
+{% load news_filters %}
 
 {% block title %}Новостная лента{% endblock %}
 {% block content %}
@@ -8,14 +9,16 @@
         {% if posts %}
             {% for post in posts %}
 <!--                <p>Категория: {{ post.category }}<br>Пользователь: {{ post.author }} Дата: {{ post.time }}</p>-->
-                <p><h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3></p>
+                <div class="list_title">
+                    <h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+                </div>
                 {% if post.photo %}
                     <img class="img_list" src="{{ post.photo.url }}">
                 {% endif %}
                 {% if post.video %}
                     <video class="video" controls width="650px" src="{{ post.video.url }}"></video>
                 {% endif %}
-                <p>{{ post.text|truncatechars:30 }}</p>
+                <p>{{ post.text|truncatechars:30|censor }}</p>
                 {% if not forloop.last %}
                 <img class="hrline" height="120px" src="{% static 'news/img/hr_dog.svg' %}" alt="hr_line">
                 {% endif %}
