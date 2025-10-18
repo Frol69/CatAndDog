@@ -77,7 +77,7 @@ main .features .list_title h3:hover {
 }
 
 main .features h1 {font-size: 50px;} /* размер шрифта */
-main .features p {max-width: 400px; margin: 20px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
+main .features p {max-width: 400px; margin: 10px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
 
 
 a { text-decoration: none; }
@@ -198,19 +198,23 @@ main .pagination {
     align-items: center;
 }
 
-.filter-form p{
-    margin: 5px 0;
+main .features .filter-form p{
     width: 300px;
-    text-align: left;
+    font-size: 25px;
+    margin-top: 5px;
+
 }
 
 .filter-form input:not([type='submit']),
 .filter-form select {
     width: 100%;
     box-sizing:border-box;
+    border: 4px solid #48280f;
+    border-radius: 32px;
 }
 
 .filter-form input[type='submit']{
     width: auto;
-    margin-top: 10px;
+    border: 4px solid #48280f;
+    border-radius: 32px;
 }
