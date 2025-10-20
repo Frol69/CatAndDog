@@ -260,3 +260,17 @@ main .features .form-create p textarea{
     border: 4px solid #48280f;
     border-radius: 32px;
 }
+
+main .about {
+    float: left; /* позиция */
+    color: #fbfbf1; /* цвет */
+    margin-top: 100px; /* отступ сверху */
+    text-align: center; /* расположение по центру */
+    width: 100%; /* ширина */
+}
+
+main .about p {
+    font-size: 25px;
+    max-width: 1000px; /* ширина 400 */
+    margin: 10px auto; /*отступ сверху и снизу 10 по бокам авто*/
+}
