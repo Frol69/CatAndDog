@@ -270,7 +270,7 @@ main .about {
 }
 
 main .about p {
-    font-size: 25px;
+    font-size: 25px; /* размер шрифта */
     max-width: 1000px; /* ширина 400 */
     margin: 10px auto; /*отступ сверху и снизу 10 по бокам авто*/
 }
