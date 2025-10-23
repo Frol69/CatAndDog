@@ -275,8 +275,9 @@ main .about p {
 
 .pagination ul {
     display: flex;
-    border: 4px solid #48280f;
-    border-radius: 32px;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
+    padding-left: 0px; /* убирает отспуп слева */
 }
 
 .pagination ul li {
@@ -284,17 +285,17 @@ main .about p {
 }
 
 .page-pagination {
-    color: #48280f;
-    border: 3px solid #48280f;
-    border-radius: 30px;
-    font-size: 20px;
-    padding: 2.5;
+    color: #48280f; /* цвет текста */
+    border: 3px solid #48280f; /* граница элемента,толщиной 3рх ,сплошная линия  */
+    border-radius: 30px; /* закругление границ элемента */
+    font-size: 20px; /* размер текста */
+    padding: 2.5;  /* отступы */
 }
 .page-active {
-    color: #e2d6c1;
-    border: 3px dotted #e2d6c1;
-    border-radius: 30px;
-    font-size: 20px;
-    padding: 2.5;
+    color: #e2d6c1; /* цвет текста */
+    border: 3px dotted #e2d6c1; /* граница элемента,толщиной 3рх ,сплошная линия  */
+    border-radius: 30px; /* закругление границ элемента */
+    font-size: 20px; /* размер текста */
+    padding: 2.5;  /* отступы */
 }
 
