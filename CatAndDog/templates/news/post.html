@@ -22,7 +22,7 @@
             <h3>Комментарии:</h3>
             {% for comment in post.comment_set.all %}
             <p> Автор комментария: "{{ comment.user }}" Время: {{ post.time }}</p>
-            <p> {{ comment.text }}</p>
+            <h5> {{ comment.text }}</h5>
             {% if not forloop.last %}
                 <hr>
             {% endif %}

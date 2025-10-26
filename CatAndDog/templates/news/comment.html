@@ -2,11 +2,12 @@
 
 
 {% block content %}
-<h1>Комментарий к посту {{ post.title }}</h1>
-<hr>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Отправить" />
-</form>
+<div class="features">
+    <h1>Комментарий к посту</h1>
+    <form action="" method="post" class="form-create">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Отправить" />
+    </form>
+</div>
 {% endblock content %}
