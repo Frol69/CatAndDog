@@ -23,6 +23,9 @@
             {% for comment in post.comment_set.all %}
             <p> Автор комментария: "{{ comment.user }}" Время: {{ post.time }}</p>
             <p> {{ comment.text }}</p>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

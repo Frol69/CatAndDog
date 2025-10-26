@@ -13,7 +13,7 @@ class PostsList(FilterView):
     ordering = '-time'
     context_object_name = 'posts'
     template_name = 'news/post_list.html'
-    paginate_by = 1
+    paginate_by = 5
     filterset_class = PostFilter
 
     # как работает фильтр(но в проекте ипользуем FilterView)
