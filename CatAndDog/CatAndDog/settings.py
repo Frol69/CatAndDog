@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.yandex',
+    'allauth.socialaccount.providers.vk',
     'news',
     'sign',
     'django_filters',
@@ -166,7 +167,14 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': os.getenv('YANDEX_SECRET'),
             'key': ''
         }
-    }
+    },
+    # 'vk': {
+    #     'APP': {
+    #         'client_id': os.getenv('VK_CLIENT_ID'),
+    #         'secret': os.getenv('VK_SECRET'),
+    #         'key': os.getenv('VK_KEY'),
+    #     }
+    # }
 }
 
 
