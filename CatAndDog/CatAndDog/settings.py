@@ -168,17 +168,17 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         }
     },
-    'vk': {
-        'APP': {
-            'client_id': os.getenv('VK_ID'),
-            'secret': os.getenv('VK_SECRET'),
-            'key': ''
-        },
-        'SCOPE': ['email'],  # запрашиваемые права
-        'AUTH_PARAMS': {'display': 'page'},
-        'METHOD': 'oauth2',
-        'VERIFIED_EMAIL': False
-    }
+    # 'vk': {
+    #     'APP': {
+    #         'client_id': os.getenv('VK_ID'),
+    #         'secret': os.getenv('VK_SECRET'),
+    #         'key': ''
+    #     },
+    #     'SCOPE': ['email'],  # запрашиваемые права
+    #     'AUTH_PARAMS': {'display': 'page'},
+    #     'METHOD': 'oauth2',
+    #     'VERIFIED_EMAIL': False
+    # }
 }
 
 
