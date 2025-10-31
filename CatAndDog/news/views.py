@@ -6,6 +6,8 @@ from .models import *
 from .forms import PostForm, CommentForm
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 
 class PostsList(FilterView):
@@ -68,19 +70,6 @@ class PetsList(ListView):
     template_name = 'news/pets.html'
 
 
-def like(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    post.like()
-    post.save()
-    return render(request, 'news/post.html', {'post': post})
-
-# def dislike(request, pk):
-#     post = get_object_or_404(Post, pk=pk)
-#     post.dislike()
-#     post.save()
-#     return render(request, 'flatpages/post.html', {'post': post})
-
-
 class PostComment(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
@@ -95,3 +84,20 @@ class PostComment(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs={'pk': self.kwargs['pk']})
+
+
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    like, created = Like.objects.get_or_create(user=request.user, post=post)
+    if not created:
+        like.delete()  # если лайк уже был — удаляем (toggle)
+    return JsonResponse({
+        'liked': created,
+        'count': post.like_count()
+    })
+
+
+def get_like_count(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return JsonResponse({'count': post.like_count()})
