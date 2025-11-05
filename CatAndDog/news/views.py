@@ -101,3 +101,7 @@ def like_post(request, post_id):
 def get_like_count(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     return JsonResponse({'count': post.like_count()})
+
+
+def post_create_regulations(request):
+    return render(request, 'news/rules_creating_post.html')
