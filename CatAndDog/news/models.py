@@ -30,7 +30,7 @@ class Post(models.Model):
     text = models.TextField(verbose_name='Содержание')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, blank=True, null=True, verbose_name='Добавить фото')
     video = models.FileField(upload_to='video/%Y/%m/%d/', default=None, blank=True, null=True, verbose_name='Добавить видео')
-    is_publiched = models.BooleanField(choices=Status.choices, default=Status.DRAFT)
+    is_published = models.BooleanField(choices=Status.choices, default=Status.DRAFT)
 
     objects = models.Manager()
     published = PublishedManager()
