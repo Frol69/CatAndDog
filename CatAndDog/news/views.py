@@ -1,16 +1,33 @@
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django_filters.views import FilterView
+from .filters import PostFilter
 from .models import *
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 
-class PostsList(ListView):
+class PostsList(FilterView):
     model = Post
     ordering = '-time'
     context_object_name = 'posts'
     template_name = 'news/post_list.html'
-    # paginate_by = 10
+    paginate_by = 5
+    filterset_class = PostFilter
+
+    # как работает фильтр(но в проекте ипользуем FilterView)
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     self.post_filtered = PostFilter(self.request.GET, queryset=queryset)
+    #     return self.post_filtered.qs
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['filter'] = self.post_filtered
+    #     return context
 
 
 class PostDetail(DetailView):
@@ -53,15 +70,38 @@ class PetsList(ListView):
     template_name = 'news/pets.html'
 
 
-def like(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    post.like()
-    post.save()
-    return render(request, 'news/post.html', {'post': post})
+class PostComment(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'news/comment.html'
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.user = self.request.user
+        comment.post = Post.objects.get(pk=self.kwargs['pk'])
+        comment.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('post_detail', kwargs={'pk': self.kwargs['pk']})
 
 
-# def dislike(request, pk):
-#     post = get_object_or_404(Post, pk=pk)
-#     post.dislike()
-#     post.save()
-#     return render(request, 'flatpages/post.html', {'post': post})
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    like, created = Like.objects.get_or_create(user=request.user, post=post)
+    if not created:
+        like.delete()  # если лайк уже был — удаляем (toggle)
+    return JsonResponse({
+        'liked': created,
+        'count': post.like_count()
+    })
+
+
+def get_like_count(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return JsonResponse({'count': post.like_count()})
+
+
+def rules_creating_post(request):
+    return render(request, 'news/rules_creating_post.html')

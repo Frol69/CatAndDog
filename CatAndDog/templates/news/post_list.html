@@ -1,9 +1,15 @@
 {% extends 'flatpages/default.html' %}
 {% load static %}
+{% load news_filters %}
 
 {% block title %}Новостная лента{% endblock %}
 {% block content %}
 <div class="features">
+    <h1>Поиск публикаций</h1>
+    <form action="" method="get" class="filter-form">
+        {{ filter.form.as_p }}
+        <input type="submit" value="Применить">
+    </form>
     <h1> Список новостей </h1>
         {% if posts %}
             {% for post in posts %}
@@ -17,7 +23,7 @@
                 {% if post.video %}
                     <video class="video" controls width="650px" src="{{ post.video.url }}"></video>
                 {% endif %}
-                <p>{{ post.text|truncatechars:30 }}</p>
+                <p>{{ post.text|truncatechars:30|censor }}</p>
                 {% if not forloop.last %}
                 <img class="hrline" height="120px" src="{% static 'news/img/hr_dog.svg' %}" alt="hr_line">
                 {% endif %}
@@ -25,5 +31,37 @@
         {% else %}
         <h2> Новостей нет! =( </h2>
         {% endif %}
+        <div class="pagination">
+            <ul>
+                <!-- Кнопка назад -->
+                {% if page_obj.has_previous %}
+                    <li>
+                        <a class="page-pagination" href="?page={{ page_obj.previous_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{key}}={{value}}{% endif %}{% endfor %}">Haзaд</a>
+                    </li>
+                {% else %}
+                    <li><span class="page-active">Haзaд</span></li>
+                {% endif %}
+
+                <!-- Текущие страницы -->
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li><span class="page-active">{{ num }}</span></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li>
+                            <a class="page-pagination" href="?page={{ num }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{key}}={{value}}{% endif %}{% endfor %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                <!-- Кнопка вперед -->
+                {% if page_obj.has_next %}
+                    <li>
+                        <a class="page-pagination" href="?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{key}}={{value}}{% endif %}{% endfor %}">Bпеpед</a>
+                    </li>
+                {% else %}
+                    <li><span class="page-active">Bпepeд</span></li>
+                {% endif %}
+            </ul>
+        </div>
 </div>
+
 {% endblock %}

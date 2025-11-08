@@ -49,22 +49,27 @@ nav ul li:hover, nav ul a:hover {
 
 }
 
+main {
+    margin-top: 100px; /* отступ сверху */
+    text-align: center; /* расположение по центру */
+}
+
+
 main .features {
     float: left; /* позиция */
     color: #fbfbf1; /* цвет */
-    margin-top: 100px; /* отступ сверху */
     text-align: center; /* расположение по центру */
     width: 100%; /* ширина */
 }
 
 main .features .video {
-    border: 4px solid #48280f;
-    border-radius: 32px;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
 }
 
 main .features .img_list {
-    border: 4px solid #48280f;
-    border-radius: 32px;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
 }
 
 main .features .list_title h3 {
@@ -77,16 +82,24 @@ main .features .list_title h3:hover {
 }
 
 main .features h1 {font-size: 50px;} /* размер шрифта */
-main .features p {max-width: 400px; margin: 20px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
+main .features p {max-width: 400px; margin: 10px auto;} /* ширина 400; отступ сверху и снизу 20 по бокам авто*/
 
 
 a { text-decoration: none; }
 
  /* тест настройка */
-main .features a {
+main .features h3 a {
     padding: 20; /* отступы */
     color: #48280f; /* цвет шрифта */
     display: block; /* блочные елементы */
+}
+
+main .features a {
+    color: #eca646;
+}
+
+main .features h4 {
+    color: #48280f;
 }
 
 main .btn-primary {
@@ -96,18 +109,17 @@ main .btn-primary {
 
 ul { list-style-type: none; }  /* убрал точки из контента */
 
-.alert-warning {
+/*.alert-warning {
     float: left;
     clear: both;
     width: 700px;
     margin: 20px 34%;
     text-align: left;
-}
+} не понял откуда код, позже убрать как разберусь */
 
 main .account {
     float: left; /* позиция */
     color: #fff; /* цвет */
-    margin-top: 150px; /* отступ сверху */
     text-align: center; /* расположение по центру */
     width: 100%; /* ширина */
 }
@@ -122,6 +134,11 @@ main .account a {
 
 main .account button {
     color: #48280f;
+}
+
+main .account .vk {
+    display: flex;
+    justify-content: center;
 }
 
 footer {
@@ -143,7 +160,6 @@ footer ul a {
 
 main .postdeteil {
     color: #fbfbf1; /* цвет */
-    margin-top: 100px; /* отступ сверху */
     text-align: center; /* расположение по центру */
     width: 100%; /* ширина */
     min-width: 1650px;
@@ -154,33 +170,172 @@ main .postdeteil p {max-width: 600px; margin: 20px auto;} /* ширина 600; �
 main .postdeteil h5 {max-width: 1000px; margin: 20px auto;}
 
 main .postdeteil img {
-    width: 400px;
-    height: 500px;
-    border: 4px solid #48280f;
-    border-radius: 32px;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
 }
 
 main .postdeteil video {
     width: 500px;
-    border: 4px solid #48280f;
-    border-radius: 32px;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
 }
+main .like {
+    display: block;
+    margin: auto;
+}
+
+
 main .like a {
     display: inline-block;
+    background: #eca646;
     color: #48280f;
     font-size: 20px;
-    margin: auto;
+    margin: 10px;
     width: 200px;
     height: 36px;
-    border: 3px solid #48280f;
-    border-radius: 32px;
+    border: 3px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
 }
 
 
 main .pets1 {
     float: left; /* позиция */
     color: #fbfbf1; /* цвет */
-    margin-top: 100px; /* отступ сверху */
     text-align: center; /* расположение по центру */
     width: 100%; /* ширина */
+}
+
+
+.filter-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .features .filter-form p{
+    width: 300px;
+    font-size: 25px;
+    margin-top: 5px;
+
+}
+
+.filter-form input:not([type='submit']),
+.filter-form select {
+    width: 100%;
+    box-sizing:border-box;
+    background: #e2d6c1;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
+}
+
+.filter-form input[type='submit']{
+    width: auto;
+    font-size: 20px;
+    background: #eca646;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
+}
+
+.form-create{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .features .form-create p{
+    width: 350px;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.form-create input:not([type='submit']),
+.form-create select {
+    color: #48280f;
+    width: 100%;
+    background: #e2d6c1;
+    box-sizing:border-box;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
+}
+
+.form-create input[type='submit']{
+    width: auto;
+    font-size: 20px;
+    background: #eca646;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
+}
+
+main .features .form-create p textarea{
+    width: 350px;
+    font-size: 20px;
+    margin-top: 5px;
+    background: #e2d6c1;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
+}
+
+main .about {
+    float: left; /* позиция */
+    color: #fbfbf1; /* цвет */
+    text-align: center; /* расположение по центру */
+    width: 100%; /* ширина */
+}
+
+main .about p {
+    font-size: 25px; /* размер шрифта */
+    max-width: 1000px; /* ширина 1000 */
+    margin: 10px auto; /*отступ сверху и снизу 10 по бокам авто*/
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination ul {
+    display: flex;
+    border: 4px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
+    padding-left: 0px; /* убирает отспуп слева */
+}
+
+.pagination ul li {
+    padding: 10px; /* отступы */
+}
+
+.page-pagination {
+    color: #48280f; /* цвет текста */
+    border: 3px solid #48280f; /* граница элемента,толщиной 3рх ,сплошная линия  */
+    border-radius: 30px; /* закругление границ элемента */
+    font-size: 20px; /* размер текста */
+    padding: 2.5;  /* отступы */
+}
+.page-active {
+    color: #e2d6c1; /* цвет текста */
+    border: 3px dotted #e2d6c1; /* граница элемента,толщиной 3рх ,сплошная линия  */
+    border-radius: 30px; /* закругление границ элемента */
+    font-size: 20px; /* размер текста */
+    padding: 2.5;  /* отступы */
+}
+
+.like-btn {
+    margin: 10px;
+    border: 3px solid #48280f; /* граница элемента,толщиной 4рх ,сплошная линия  */
+    border-radius: 32px; /* закругление границ элемента */
+    font-size: 18px; /* размер текста */
+    background: #eca646;
+}
+
+.like-count {
+    margin: 10px;
+    color: #48280f;
+    font-size: 18px;
+    padding: 2px;
+}
+
+.comment hr {
+    width: 50%;        /* длина линии (50% от контейнера) */
+    margin: 10px auto; /* отступы сверху/снизу 10px; auto — центрирует */
+    border: none;
+    border-top: 1px solid #ccc; /* стиль линии */
 }

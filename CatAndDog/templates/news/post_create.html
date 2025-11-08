@@ -5,11 +5,12 @@
 <div class="features">
     <h1>Создание новости</h1>
     <hr>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data" class="form-create">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
-        <input type="submit" value="Save" />
+        <h4>Перед созданием поста ознакомьтесь с <a href="{% url 'rules_creating_post' %}">ПРАВИЛАМИ</a></h4>
+        <input type="submit" value="Сохранить" />
     </form>
 </div>
 {% endblock content %}

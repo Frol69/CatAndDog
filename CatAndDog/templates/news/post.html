@@ -1,4 +1,5 @@
 {% extends 'flatpages/default.html' %}
+{% load news_filters %}
 
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
@@ -11,10 +12,54 @@
         {% if post.video %}
             <video class="video" controls src="{{ post.video.url }}"></video>
         {% endif %}
-        <h5>{{ post.text }}</h5>
+        <h5>{{ post.text|censor }}</h5>
         <div class="like">
-            <a href="{% url 'like' post.pk %}"> Лайк <i class="fa-regular fa-thumbs-up"></i> {{ post.rating }}</a>
-            <a href=""> Коментировать <i class="fa-regular fa-comment"></i></a>
+                <button class="like-btn" data-post-id="{{ post.id }}">
+                    {% if request.user in post.liked_users %}
+                        Убрать лайк
+                    {% else %}
+                        Лайк 👍
+                    {% endif %}
+                </button>
+
+                <span class="like-count" data-post-id="{{ post.id }}">
+                    {{ post.like_count }}
+                </span>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+            $(document).ready(function() {
+                $('.like-btn').click(function() {
+                    var postId = $(this).data('post-id');
+                    $.ajax({
+                        url: `/post/${postId}/like/`,
+                        type: 'POST',
+                        headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                        success: function(response) {
+                            // Обновляем текст кнопки
+                            $(`.like-btn[data-post-id="${postId}"]`).text(
+                                response.liked ? 'Убрать лайк' : 'Лайк 👍'
+                            );
+                            // Обновляем счётчик
+                            $(`.like-count[data-post-id="${postId}"]`).text(response.count);
+                        }
+                    });
+                });
+            });
+            </script>
+            <a href="{% url 'post_comment' post.pk %}"> Комментировать <i class="fa-regular fa-comment"></i></a>
+        </div>
+        <br>
+        <div class="comment">
+            <h3>Комментарии:</h3>
+            <hr>
+            {% for comment in post.comment_set.all %}
+            <p> Автор комментария: "{{ comment.user }}" Время: {{ comment.time_comm }}</p>
+            <h5> {{ comment.text|censor }}</h5>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}
