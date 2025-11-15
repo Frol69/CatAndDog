@@ -109,14 +109,6 @@ main .btn-primary {
 
 ul { list-style-type: none; }  /* убрал точки из контента */
 
-/*.alert-warning {
-    float: left;
-    clear: both;
-    width: 700px;
-    margin: 20px 34%;
-    text-align: left;
-} не понял откуда код, позже убрать как разберусь */
-
 main .account {
     float: left; /* позиция */
     color: #fff; /* цвет */
@@ -287,6 +279,7 @@ main .about p {
     max-width: 1000px; /* ширина 1000 */
     margin: 10px auto; /*отступ сверху и снизу 10 по бокам авто*/
 }
+
 .pagination {
     display: flex;
     justify-content: center;
