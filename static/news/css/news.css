@@ -40,6 +40,9 @@ header .nav-header {
     align-items: center;
 }
 
+header nav .nav-header img {
+    width: 80px;
+}
 
 header .nav-header .logo {
     color: #48280f;
@@ -61,7 +64,7 @@ header .nav-header .nav-btn .close-menu {
 header .navbar .nav-link {
     font-size: 22px;
     color: #eca646;
-    padding: 1rem;
+    padding: 15px;
     display: inline-block;
     transition: all .3s ease-in;
 }
@@ -75,10 +78,17 @@ header .navbar {
     height: 0;
     overflow: hidden;
     transition: all .3s ease-in;
+    display: flex;
+    flex-direction: column;      /* Элементы идут сверху вниз */
+    align-items: center;        /* Центрируем по горизонтали */
+    padding: 0 1rem;            /* Только по горизонтали */
+    margin: 0;
 }
 
 header .navbar.active {
-    height: 22rem;
+    height: auto;               /* Вместо фиксированной высоты — автоматическая */
+    overflow-y: auto;       /* Полоса прокрутки, если контента больше */
+    padding: 1px 0;          /* Отступы сверху и снизу при раскрытии */
 }
 
 header .nav-header .nav-btn.active .open-menu {
@@ -89,11 +99,12 @@ header .nav-header .nav-btn.active .close-menu {
     display: block;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:1350px) {
     header nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: auto;
     }
 
     header .navbar {
