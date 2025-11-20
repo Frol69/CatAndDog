@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 
 
 class PostsList(FilterView):
@@ -37,6 +38,15 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'news/post.html'
     context_object_name = 'post'
+
+    def get_object(self, *args, **kwargs):
+
+        obj = cache.get(f'post-{self.kwargs["slug"]}', None)
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["slug"]}', obj)
+
+        return obj
 
 
 class PostCreate(UserPassesTestMixin, CreateView):
