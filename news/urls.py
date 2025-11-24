@@ -11,5 +11,6 @@ urlpatterns = [
     path('post/<int:post_id>/like/', like_post, name='like_post'),
     path('post/<int:post_id>/count/', get_like_count, name='get_like_count'),
     path('rules/', rules_creating_post, name='rules_creating_post'),
-    path('<slug:slug>/update/', PostUpdate.as_view(), name='post_update')
+    path('<slug:slug>/update/', PostUpdate.as_view(), name='post_update'),
+    path('<slug:slug>/delete/', PostDelete.as_view(), name='post_delete'),
 ]
