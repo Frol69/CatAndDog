@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -168,17 +168,16 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         }
     },
-    # 'vk': {
-    #     'APP': {
-    #         'client_id': os.getenv('VK_ID'),
-    #         'secret': os.getenv('VK_SECRET'),
-    #         'key': ''
-    #     },
-    #     'SCOPE': ['email'],  # запрашиваемые права
-    #     'AUTH_PARAMS': {'display': 'page'},
-    #     'METHOD': 'oauth2',
-    #     'VERIFIED_EMAIL': False
-    # }
+    'vk': {
+        'APP': {
+            'client_id': os.getenv('VK_CLIENT_ID'),
+            'secret': os.getenv('VK_SECRET'),
+            'key': ''
+        },
+        'SCOPE': ['email'],
+        'AUTH_PARAMS': {'v': '5.131'},
+        'METHOD': 'oauth2'
+    },
 }
 
 
