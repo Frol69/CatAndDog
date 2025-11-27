@@ -21,6 +21,7 @@ class PostsList(FilterView):
     filterset_class = PostFilter
     cache_timeout = 120
 
+# кеширование набора записей (QuerySet) с учётом параметров запроса
     def get_queryset(self):
         params = self.request.GET.dict()
         cache_key = f'post-queryset-{urlencode(params)}' if params else 'post-queryset'
@@ -50,6 +51,7 @@ class PostDetail(DetailView):
     context_object_name = 'post'
     cache_timeout = 120
 
+# кеширование одного поста
     def get_object(self, *args, **kwargs):
         obj = cache.get(f'post-{self.kwargs["slug"]}', None)
         if not obj:

@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from .models import Post
 
 
-# кеш
+# очищение кеша при сохранении или удалении объекта модели (отдельного поста или queryset)
 @receiver([post_save, post_delete], sender=Post)
 def cache_post(sender, instance, *args, **kwargs):
     cache.delete(f'post-{instance.slug}')
