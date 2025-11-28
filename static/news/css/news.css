@@ -216,11 +216,6 @@ main .account .exit button {
     padding: 1px 6px;
 }
 
-main .account .vk {
-    display: flex;
-    justify-content: center;
-}
-
 footer {
     margin-top: auto; /* Здесь вступает в действие магия Flexbox */
     background: #945b36; /*цвет панели сверху */
