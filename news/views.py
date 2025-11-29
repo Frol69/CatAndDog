@@ -28,7 +28,7 @@ class PostsList(FilterView):
 
         queryset = cache.get(cache_key)
         if queryset is None:
-            queryset = Post.published.all().order_by('-time')
+            queryset = Post.published.all().order_by('-time').select_related('category', 'author')
             cache.set(cache_key, queryset, self.cache_timeout)
 
         return queryset
