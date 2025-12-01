@@ -6,18 +6,26 @@ from .models import Post, Category, Pets, Comment
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
-    fields = ['title', 'text', 'author', 'category', 'photo', 'video']
-    list_display = ('id', 'title', 'time', 'is_published', 'category')
-    list_display_links = ('id', 'title')
-    ordering = ['-time', 'title']
-    list_editable = ('is_published',)
-    list_per_page = 10
-    actions = ['set_published', 'set_draft']
-    list_filter = ['category__name', 'is_published']
+    fields = ['title', 'text', 'category', 'photo', 'video']  # поля формы создания и редакции
+    list_display = ('id', 'title', 'time', 'is_published', 'category')  # поля отображаемые в списке объектов
+    list_display_links = ('id', 'title')  # поля линк
+    ordering = ['-time', 'title']  # сортировка
+    list_editable = ('is_published',)  # разрешение редактировать прям на странице списка
+    list_per_page = 10  # пагинация
+    actions = ['set_published', 'set_draft']  # доп действия
+    list_filter = ['category__name', 'is_published']  # фильтрация по полям
+    readonly_fields = []  # поля неизменяемое (видное в форме)
+
+    def save_model(self, request, obj, form, change):
+        if not change:  # Только при создании новой записи
+            obj.author = request.user
+        super().save_model(request, obj, form, change)
 
     def get_form(self, request, obj=None, **kwargs):
         # Получаем стандартную форму
         form = super().get_form(request, obj, **kwargs)
+        if 'author' in form.base_fields:
+            form.base_fields['author'].disabled = True
         # Явно добавляем поле slug, даже если editable=False
         form.base_fields['slug'] = forms.CharField(
             required=False,
