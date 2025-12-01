@@ -39,10 +39,10 @@ class Post(models.Model):
     objects = models.Manager()
     published = PublishedManager()
 
-    def save(self, *args, **kwargs):
-        if self.title and not self.slug:
-            self.slug = unidecode(self.title)
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.title and not self.slug:
+    #         self.slug = unidecode(self.title)
+    #     super().save(*args, **kwargs)
 
     def like_count(self):
         return self.like_set.count()
