@@ -13,6 +13,7 @@ class PostAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
     list_per_page = 10
     actions = ['set_published', 'set_draft']
+    list_filter = ['category__name', 'is_published']
 
     def get_form(self, request, obj=None, **kwargs):
         # Получаем стандартную форму
