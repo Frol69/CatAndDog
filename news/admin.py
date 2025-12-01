@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib import admin
+from django.contrib import admin, messages
 from .models import Post, Category, Pets, Comment
 
 
@@ -7,11 +7,12 @@ from .models import Post, Category, Pets, Comment
 class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     fields = ['title', 'text', 'author', 'category', 'photo', 'video']
-    list_display = ('id', 'title', 'time', 'is_published', 'category', 'my_func')
+    list_display = ('id', 'title', 'time', 'is_published', 'category')
     list_display_links = ('id', 'title')
     ordering = ['-time', 'title']
     list_editable = ('is_published',)
     list_per_page = 10
+    actions = ['set_published', 'set_draft']
 
     def get_form(self, request, obj=None, **kwargs):
         # Получаем стандартную форму
@@ -27,6 +28,16 @@ class PostAdmin(admin.ModelAdmin):
     # @admin.display(description='Имя поля', ordering='сортировка по полю из модели')
     # def my_func(self, post: Post):
     #     return f'описание поля {len(post.text)} и тд.'
+
+    @admin.action(description='Опубликовать выбранные записи')
+    def set_published(self, request, queryset):
+        count = queryset.update(is_published=Post.Status.PUBLISHED)
+        self.message_user(request, f'Изменено {count} записей')
+
+    @admin.action(description='Снять с пуюликации выбранные записи')
+    def set_draft(self, request, queryset):
+        count = queryset.update(is_published=Post.Status.DRAFT)
+        self.message_user(request, f'{count} записей снято с публикации', messages.WARNING)
 
 
 @admin.register(Category)
