@@ -2,11 +2,14 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venvCD" />
       <excludeFolder url="file://$MODULE_DIR$/venvCD1" />
+<<<<<<< HEAD
       <excludeFolder url="file://$MODULE_DIR$/venvCD" />
       <excludeFolder url="file://$MODULE_DIR$/venvCaD" />
+=======
+      <excludeFolder url="file://$MODULE_DIR$/venvCAD" />
+>>>>>>> eb3a0130fbc05ad947e40509eb0de72ee3ed6cd1
     </content>
     <orderEntry type="jdk" jdkName="Python 3.12 CatAndDog" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
