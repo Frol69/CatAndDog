@@ -48,8 +48,12 @@
             });
             </script>
             <a href="{% url 'post_comment' post.pk %}"> Комментировать <i class="fa-regular fa-comment"></i></a>
+            {% if post.author == request.user or request.user.is_staff %}
             <a href="{% url 'post_update' post.slug %}"> Редактировать <i class="fa-regular fa-pen-to-square"></i></a>
+            {% endif %}
+            {% if request.user.is_staff %}
             <a href="{% url 'post_delete' post.slug %}"> Удалить пост <i class="fa-solid fa-delete-left"></i></a>
+            {% endif %}
         </div>
         <br>
         <div class="comment">

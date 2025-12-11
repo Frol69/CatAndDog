@@ -5,6 +5,7 @@ from .filters import PostFilter
 from .models import *
 from .forms import PostForm, CommentForm
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
@@ -59,7 +60,7 @@ class PostDetail(DetailView):
         return obj
 
 
-class PostCreate(CreateView):
+class PostCreate(UserPassesTestMixin, CreateView):
     form_class = PostForm
     model = Post
     template_name = 'news/post_create_or_update.html'
@@ -70,14 +71,14 @@ class PostCreate(CreateView):
         return context
 
     def test_func(self):
-        return self.request.user.groups.filter(name='authors').exists()
+        return self.request.user.groups.filter(name='authors').exists() # проверка на авторство
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(UserPassesTestMixin, UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'news/post_create_or_update.html'
@@ -87,11 +88,17 @@ class PostUpdate(UpdateView):
         context['create_or_edit'] = 'Добавление' if self.request.path == '/post/create/' else 'Редактирование'
         return context
 
+    def test_func(self):
+        return self.get_object().author == self.request.user or self.request.user.is_staff
 
-class PostDelete(DeleteView):
+
+class PostDelete(UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'news/post_delete.html'
     success_url = reverse_lazy('post_list')
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 def contacts(request):
@@ -104,7 +111,7 @@ class PetsList(ListView):
     template_name = 'news/pets.html'
 
 
-class PostComment(CreateView):
+class PostComment(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'news/comment.html'
