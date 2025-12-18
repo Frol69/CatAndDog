@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django_filters.views import FilterView
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.viewsets import ModelViewSet
 from .filters import PostFilter
 from .models import *
 from .forms import PostForm, CommentForm
@@ -10,6 +12,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.utils.http import urlencode
+from .serializers import PostSerializer
 
 
 class PostsList(FilterView):
@@ -146,3 +149,12 @@ def get_like_count(request, post_id):
 
 def rules_creating_post(request):
     return render(request, 'news/rules_creating_post.html')
+
+
+class PostViewSet(ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = (IsAdminUser, )
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)

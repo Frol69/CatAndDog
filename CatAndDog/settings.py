@@ -44,13 +44,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
-    'allauth.socialaccount.providers.vk',  # это
+    'allauth.socialaccount.providers.vk',
     'news',
     'users',
     'django_filters',
     'autoslug',
     'debug_toolbar',
     'django_rename_app',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
