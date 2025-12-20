@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_rename_app',
     'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
