@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'users',
     'django_filters',
     'autoslug',
-    'django_rename_app',
     'rest_framework',
     'drf_spectacular',
 ]
@@ -198,16 +197,16 @@ LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'post_list'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
-# для включения кеша раскомментить
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://localhost:6379/1',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+if os.getenv('REDIS_URL'):
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': os.getenv('REDIS_URL'),
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            }
         }
     }
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
@@ -240,3 +239,9 @@ SPECTACULAR_SETTINGS = {
     'SORT_OPERATIONS': True,
     'COMPONENT_SPLIT_REQUEST': True,
 }
+# разобраться после деплоя
+# CSRF_COOKIE_SECURE = not DEBUG
+# SESSION_COOKIE_SECURE = not DEBUG
+# SECURE_SSL_REDIRECT = not DEBUG
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
