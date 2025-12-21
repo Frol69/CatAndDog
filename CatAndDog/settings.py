@@ -222,11 +222,4 @@ SPECTACULAR_SETTINGS = {
         'email': 'Frolov27101993@yandex.ru',
         'url': 'https://vk.com/frolovserejka',
     },
-    'COMPONENT_AUTHENTICATION': [
-        {
-            'type': 'http',
-            'scheme': 'bearer',
-            'bearerFormat': 'JWT',
-        }
-    ],
 }
