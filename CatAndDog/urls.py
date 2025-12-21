@@ -20,47 +20,22 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from news import views
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
-from rest_framework import permissions
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 router = DefaultRouter()
 router.register(r'post', views.PostViewSet , basename='post')
 
-# Настройка схемы API
-schema_view = get_schema_view(
-    openapi.Info(
-        title="CatAndDog API",
-        default_version='v1',
-        description="Документация для вашего API",
-        terms_of_service="Ссылка на условия использования",
-        contact=openapi.Contact(email="Контактная информация(Email)"),
-        license=openapi.License(name="BSD License"),
-    ),
-    public=True,  # Документация доступна всем
-    permission_classes=(permissions.AllowAny,),  # Любой пользователь может просматривать
-)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("news.urls")),
     path('users/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$',
-             schema_view.without_ui(cache_timeout=0),
-             name='schema-json'),
-
-    # Swagger UI (интерактивный интерфейс)
-    re_path(r'^swagger/$',
-             schema_view.with_ui('swagger', cache_timeout=0),
-             name='schema-swagger-ui'),
-
-    # ReDoc (альтернативный интерфейс)
-    re_path(r'^redoc/$',
-             schema_view.with_ui('redoc', cache_timeout=0),
-             name='schema-redoc'),
 ]
 
 if settings.DEBUG:

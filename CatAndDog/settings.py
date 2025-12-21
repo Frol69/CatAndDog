@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_rename_app',
     'rest_framework',
-    'drf_yasg',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -209,4 +209,24 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 5,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'CatAndDog API',
+    'DESCRIPTION': 'Документация для API',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'CONTACT': {
+        'name': 'FrolSM',
+        'email': 'Frolov27101993@yandex.ru',
+        'url': 'https://vk.com/frolovserejka',
+    },
+    'COMPONENT_AUTHENTICATION': [
+        {
+            'type': 'http',
+            'scheme': 'bearer',
+            'bearerFormat': 'JWT',
+        }
+    ],
 }
