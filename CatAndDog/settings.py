@@ -25,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # это для localhost
+ALLOWED_HOSTS = ['127.0.0.1',
+    'localhost']
 INTERNAL_IPS = [
     '127.0.0.1',
     'localhost',]
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     'users',
     'django_filters',
     'autoslug',
-    'debug_toolbar',
     'django_rename_app',
     'rest_framework',
     'drf_spectacular',
@@ -64,8 +64,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar']
+    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+
 
 ROOT_URLCONF = 'CatAndDog.urls'
 
@@ -222,4 +226,17 @@ SPECTACULAR_SETTINGS = {
         'email': 'Frolov27101993@yandex.ru',
         'url': 'https://vk.com/frolovserejka',
     },
+
+    # 🔐 JWT для Swagger / Apidog
+    'COMPONENT_AUTHENTICATION': [
+        {
+            'type': 'http',
+            'scheme': 'bearer',
+            'bearerFormat': 'JWT',
+        },
+    ],
+
+    # косметика
+    'SORT_OPERATIONS': True,
+    'COMPONENT_SPLIT_REQUEST': True,
 }
