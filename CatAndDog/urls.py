@@ -39,17 +39,12 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-if settings.DEBUG:
     import debug_toolbar
-    urlpatterns = [
+
+    urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
-
-
-urlpatterns += static(settings.STATIC_URL)
-urlpatterns += static(settings.MEDIA_URL)
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+      + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = 'Панель администрирования'
 admin.site.index_title = 'Сайт питомника ""'
