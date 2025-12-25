@@ -38,7 +38,7 @@
                         headers: {'X-CSRFToken': '{{ csrf_token }}'},
                         success: function(response) {
                             $(`.like-btn[data-post-slug="${slug}"]`).text(
-                                response.liked ? 'Убрать лайк' : 'Лайк 👍'
+                                response.liked ? 'Лайк 👍' : 'Лайк 👍'
                             );
                             $(`.like-count[data-post-slug="${slug}"]`).text(response.count);
                         }
