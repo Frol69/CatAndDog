@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django_filters.views import FilterView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.viewsets import ModelViewSet
@@ -107,8 +107,8 @@ class PostDelete(UserPassesTestMixin, DeleteView):
         return self.request.user.is_staff
 
 
-def contacts(request):
-    return render(request, 'news/contacts.html')
+class ContactsView(TemplateView):
+    template_name = 'news/contacts.html'
 
 
 class PetsList(ListView):
@@ -151,8 +151,8 @@ def get_like_count(request, slug):
     return JsonResponse({'count': post.like_count()})
 
 
-def rules_creating_post(request):
-    return render(request, 'news/rules_creating_post.html')
+class RulesCreatingPostView(TemplateView):
+    template_name = 'news/rules_creating_post.html'
 
 
 class PostViewSet(ModelViewSet):
